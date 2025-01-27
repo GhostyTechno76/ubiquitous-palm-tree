@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Passing Marks Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      padding: 20px;
+      background-color: #f4f4f9;
+    }
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      background: white;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+    input, button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      background-color: #007BFF;
+      color: white;
+      border: none;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Passing Marks Calculator</h1>
+    <label for="pt1">Periodic Test 1 Marks:</label>
+    <input type="number" id="pt1" placeholder="Enter marks of PT1" />
+
+    <label for="pt2">Periodic Test 2 Marks:</label>
+    <input type="number" id="pt2" placeholder="Enter marks of PT2" />
+
+    <label for="half">Half-Yearly Exam Marks:</label>
+    <input type="number" id="half" placeholder="Enter marks of Half-Yearly" />
+
+    <label for="maxMarks">Maximum Marks:</label>
+    <input type="number" id="maxMarks" placeholder="Enter max marks (35, 70, etc.)" />
+
+    <button onclick="calculate()">Calculate</button>
+    <p id="result"></p>
+  </div>
+
+  <script>
+    function calculate() {
+      const pt1 = Number(document.getElementById('pt1').value) || 0;
+      const pt2 = Number(document.getElementById('pt2').value) || 0;
+      const half = Number(document.getElementById('half').value) || 0;
+      const maxMarks = Number(document.getElementById('maxMarks').value) || 0;
+
+      let resultText = '';
+      if (maxMarks === 35 || maxMarks === 70) {
+        const a = (pt1 / 35) * 10;
+        const b = (pt2 / 35) * 10;
+        const c = (half / 70) * 30;
+        const e = Math.ceil(((33 - a - b - c) / 50) * 70);
+        resultText = `You need ${e} marks to pass Class 11. Good luck!`;
+      } else if (maxMarks === 40 || maxMarks === 80) {
+        const a = (pt1 / 40) * 10;
+        const b = (pt2 / 40) * 10;
+        const c = (half / 80) * 30;
+        const e = Math.ceil(((33 - a - b - c) / 50) * 80);
+        resultText = `You need ${e} marks to pass Class 11. Good luck!`;
+      } else {
+        resultText = 'Something is wrong with the maximum marks entered.';
+      }
+
+      document.getElementById('result').innerText = resultText;
+    }
+  </script>
+</body>
+</html>
